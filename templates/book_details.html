@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Details{% endblock %}
+
+{% block content %}
+<h1>Book Details</h1>
+<div>
+    <h2>Title: {{ book.title }}</h2>
+    <p><strong>Author:</strong> {{ book.author }}</p>
+    <p><strong>Publication Year:</strong> {{ book.publicationYear }}</p>
+    <p><strong> description:</strong> {{ book. description }}</p>
+
+
+</div>
+
+{% if currentUser and currentUser._id.toString() === book.user.toString() %}
+<a href="/books/{{ book._id }}/edit" class="btn btn-primary">Edit</a>
+<form action="/books/{{ book._id }}/delete" method="POST" style="display: inline;">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+{% endif %}
+
+
+<a href="/" class="btn btn-primary">Back to Home</a>
+{% endblock %}
